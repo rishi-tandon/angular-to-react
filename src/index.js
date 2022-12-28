@@ -1,17 +1,18 @@
-import './style.css';
+import "./style.css";
 
-import React, { Component } from 'react';
-import { Route, BrowserRouter as Router } from 'react-router-dom';
-import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
+import React, { Component } from "react";
+import { Route, BrowserRouter as Router } from "react-router-dom";
+import { applyMiddleware, combineReducers, compose, createStore } from "redux";
 
-import Cart from './containers/Cart';
-import ProductDetails from './containers/ProductDetails';
-import ProductList from './components/ProductList';
-import { Provider } from 'react-redux';
-import ReduxThunk from 'redux-thunk';
-import TopBar from './components/TopBar';
-import cartReducer from './store/reducers/cart';
-import { render } from 'react-dom';
+import Cart from "./containers/Cart";
+import ProductDetails from "./containers/ProductDetails";
+import ProductList from "./components/ProductList";
+import { Provider } from "react-redux";
+import ReduxThunk from "redux-thunk";
+import ShippingPricesContainer from "./containers/ShippingPrices";
+import TopBar from "./components/TopBar";
+import cartReducer from "./store/reducers/cart";
+import { render } from "react-dom";
 
 const rootReducer = combineReducers({
   cart: cartReducer,
@@ -20,9 +21,9 @@ const rootReducer = combineReducers({
 const logger = (store) => {
   return (next) => {
     return (action) => {
-      console.log('[MiddleWare] Dispatching', action);
+      console.log("[MiddleWare] Dispatching", action);
       const result = next(action);
-      console.log('[MiddleWare] next state', store.getState());
+      console.log("[MiddleWare] next state", store.getState());
       return result;
     };
   };
@@ -40,7 +41,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      name: 'React',
+      name: "React",
     };
   }
 
@@ -53,6 +54,7 @@ class App extends Component {
             <Route exact path="/" component={ProductList} />
             <Route path="/products/:productId" component={ProductDetails} />
             <Route exact path="/checkout" component={Cart} />
+            <Route path="/shipping" component={ShippingPricesContainer} />
           </div>
         </Router>
       </Provider>
@@ -60,4 +62,4 @@ class App extends Component {
   }
 }
 
-render(<App />, document.getElementById('root'));
+render(<App />, document.getElementById("root"));

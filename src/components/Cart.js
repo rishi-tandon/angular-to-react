@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
-import React from 'react';
-import { currency } from '../utils';
+import { Link } from "react-router-dom";
+import React from "react";
+import { currency } from "../utils";
 
 const Cart = ({ products }) => {
   return (

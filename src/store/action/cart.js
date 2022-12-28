@@ -20,15 +20,30 @@ const getShippingPriceStart = () => {
   };
 };
 
-const getShippingPriceSuccess = () => {
+const getShippingPriceSuccess = (shippingPrices) => {
   return {
     type: CartTypes.GET_SHIPPING_PRICE_SUCCESS,
     shippingPrices,
   };
 };
 
-const getShippingPriceError = () => {
+const getShippingPriceError = (error) => {
   return {
     type: CartTypes.GET_SHIPPING_PRICE_FAIL,
+    error,
+  };
+};
+
+export const getShippingPrices = () => {
+  return async (dispatch) => {
+    try {
+      dispatch(getShippingPriceStart());
+      const httpResponse = await axios.get(
+        "https://jsonplaceholder.typicode.com/users"
+      );
+      dispatch(getShippingPriceSuccess(httpResponse.data));
+    } catch (error) {
+      dispatch(getShippingPriceError(error));
+    }
   };
 };

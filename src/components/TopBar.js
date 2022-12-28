@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
-import React from 'react';
+import { Link } from "react-router-dom";
+import React from "react";
 
 const TopBar = () => {
   return (
@@ -7,9 +7,9 @@ const TopBar = () => {
       <Link to="/">
         <h1>My Store</h1>
       </Link>
-      <a className="button fancy-button">
+      <Link className="button fancy-button" to="/checkout">
         <i className="material-icons">shopping_cart</i>Checkout
-      </a>
+      </Link>
     </div>
   );
 };
