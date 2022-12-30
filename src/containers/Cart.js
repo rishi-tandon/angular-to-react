@@ -1,16 +1,31 @@
-import Cart from '../components/Cart';
-import React from 'react';
-import { connect } from 'react-redux';
+import * as actions from "../store/action/cart";
 
-const CartContainer = (props) => {
-  const { products } = props;
-  return <Cart products={products}></Cart>;
+import CartComponent from "../components/Cart";
+import React from "react";
+import { connect } from "react-redux";
+
+const Cart = (props) => {
+  const { products, clearCart } = props;
+
+  return (
+    <CartComponent
+      {...{
+        clearCart,
+        products,
+      }}
+    />
+  );
 };
-
 const mapStateToProps = (state) => {
   return {
     products: state.cart.items,
   };
 };
 
-export default connect(mapStateToProps)(CartContainer);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    clearCart: () => dispatch(actions.clearCart()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);

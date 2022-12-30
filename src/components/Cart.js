@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import React from "react";
+import UserInformation from "./UserInformation";
+import UserInformationRefactor from "./UserInformationRefactor";
 import { currency } from "../utils";
 
-const Cart = ({ products }) => {
+const Cart = ({ products, clearCart }) => {
   return (
     <div className="app-cart">
       <p>
@@ -15,6 +17,9 @@ const Cart = ({ products }) => {
           <span>{currency(product.price)}</span>
         </div>;
       })}
+      {/*<UserInformation clearCart={clearCart} />*/}
+      {/*<ReactForm />*/}
+      <UserInformationRefactor clearCart={clearCart} />
     </div>
   );
 };
